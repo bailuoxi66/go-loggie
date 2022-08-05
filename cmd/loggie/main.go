@@ -18,9 +18,10 @@ package main
 
 import (
 	"bailuoxi66/go-loggie/pkg/core/log"
-	"bailuoxi66/go-loggie/pkg/core/signals"
 	"flag"
+	"go.uber.org/automaxprocs/maxprocs"
 	"os"
+	"runtime"
 )
 
 var (
@@ -41,5 +42,14 @@ func main() {
 	log.InitLog()
 
 	// set up signals so we handle the first shutdown signal gracefully
-	stopCh := signals.SetupSignalHandler()
+	//stopCh := signals.SetupSignalHandler()
+
+	// init logging configuration
+	// Automatically set GOMAXPROCS to match Linux container CPU quota
+	if _, err := maxprocs.Set(maxprocs.Logger(log.Debug)); err != nil {
+		log.Panic("set maxprocs error: %v", err)
+	}
+	log.Info("real GOMAXPROCS %d", runtime.GOMAXPROCS(-1))
+
+	// system config file
 }
