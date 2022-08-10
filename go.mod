@@ -4,6 +4,8 @@ go 1.16
 
 require (
 	github.com/BurntSushi/toml v1.2.0 // indirect
+	github.com/bitly/go-simplejson v0.5.0
+	github.com/bmizerany/assert v0.0.0-20160611221934-b7ed37b82869 // indirect
 	github.com/creasty/defaults v1.6.0
 	github.com/go-playground/validator/v10 v10.11.0
 	github.com/mattn/go-zglob v0.0.3
